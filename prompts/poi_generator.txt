@@ -1,0 +1,12 @@
+You are observing a debate. Based on the following speech, generate 2 challenging Points of Information (POIs) that directly engage with the speaker's arguments.
+
+Speech so far:
+---
+{PARTIAL_SPEECH}
+---
+
+Output:
+- POI 1:
+- POI 2:
+
+Each POI should be concise (one sentence), logically challenging, and contextually relevant.
