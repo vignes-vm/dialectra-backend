@@ -1,0 +1,12 @@
+# Core dependencies
+fastapi>=0.104.0
+uvicorn>=0.23.2
+pydantic>=2.4.2
+
+# LLM clients
+openai>=1.2.0
+langchain>=0.0.335
+langchain-google-genai>=0.0.5
+
+# Utilities
+python-dotenv>=1.0.0

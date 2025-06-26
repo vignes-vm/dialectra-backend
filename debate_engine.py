@@ -1,10 +1,10 @@
-from llm.openai_client import LLMClient
+from llm.llm_interface import LLMInterface, LLMType
 from llm.prompt_manager import PromptManager
 from models.debate_state import DebateSession
 
 class DebateOrchestrator:
-    def __init__(self):
-        self.llm = LLMClient()
+    def __init__(self, llm_type=LLMType.OPENAI):
+        self.llm = LLMInterface(llm_type)
         self.prompts = PromptManager()
         self.state = DebateSession()
 
