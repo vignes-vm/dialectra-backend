@@ -29,3 +29,6 @@ Desktop.ini
 # Logs
 *.log
 logs/
+
+# Firebase configuration
+firebase/firebase-admin.json

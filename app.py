@@ -3,6 +3,11 @@ from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 from llm.llm_interface import LLMInterface
 from llm.prompt_manager import PromptManager
+from firebase_admin import credentials,firestore
+import firebase_admin
+
+cred = credentials.Certificate("firebase/firebase-admin.json")
+firebase_admin.initialize_app(cred)
 
 
 app = FastAPI(
