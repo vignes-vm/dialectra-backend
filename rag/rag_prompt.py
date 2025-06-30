@@ -6,7 +6,7 @@ class RagPromptBuilder:
     def build_prompt(self,motion,speaker_role,current_speech_draft):
         context_docs=self.retriever.retrieve_similar(current_speech_draft)
         context_text="\n\n".join([
-            f"[{d.metadata.get('speaker')}]:{d.page_context}"
+            f"[{d.metadata.get('speaker')}]:{d.page_content}"
             for d in context_docs                          
         ])
 
