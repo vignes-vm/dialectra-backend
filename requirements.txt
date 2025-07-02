@@ -9,4 +9,5 @@ langchain>=0.0.335
 langchain-google-genai>=0.0.5
 
 # Utilities
+firebase-admin>=6.2.0
 python-dotenv>=1.0.0

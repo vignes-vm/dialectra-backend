@@ -3,13 +3,30 @@ from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 from llm.llm_interface import LLMInterface
 from llm.prompt_manager import PromptManager
-#from firebase_admin import credentials,firestore
-#import firebase_admin
+from firebase_admin import credentials,firestore
+import firebase_admin
 from rag.debate_controller import DebateController
 
-#cred = credentials.Certificate("firebase/firebase-admin.json")
-#firebase_admin.initialize_app(cred)
+from firebase.debate_sessions import create_debate_session
 
+
+cred = credentials.Certificate("firebase/firebase-admin.json")
+firebase_admin.initialize_app(cred, name="debate_app")
+
+
+# session_data = {
+#     "id": "debate_002",
+#     "debate_type": "Oxford",
+#     "debate_name": "Future of AI",
+#     "debate_description": "Discuss how AI will shape the world.",
+#     "rules_and_regulations": "Follow the moderator, no interruptions.",
+#     "user_id": "user_123",
+#     "is_active": True,
+#     "duration": 1800  # seconds
+# }
+
+# msg = create_debate_session(session_data)
+# print(msg)
 
 debate=DebateController()
 
@@ -54,4 +71,6 @@ def all_speeches():
     docs=debate.get_all_speeches()
     return [{"speaker":d.metadata["speaker"],"context":d.page_context} for d in docs]
 
-uvicorn.run(app, host="0.0.0.0", port=8000)
+uvicorn.run(app, host="127.0.0.1", port=8000)
+
+print(msg)
