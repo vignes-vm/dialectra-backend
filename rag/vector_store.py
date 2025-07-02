@@ -1,7 +1,7 @@
 from langchain_community.vectorstores import FAISS
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_core.documents import Document
-from langchain_community.docstore import InMemoryDocstore  # ✅ Add this
+from langchain_community.docstore import InMemoryDocstore 
 import os
 import faiss
 
@@ -18,7 +18,7 @@ class VectorStroreClient:
             self.db = FAISS(
                 embedding_function=self.embedding,
                 index=index,
-                docstore=InMemoryDocstore({}),  # ✅ Correct fix
+                docstore=InMemoryDocstore({}),  
                 index_to_docstore_id={}
             )
 

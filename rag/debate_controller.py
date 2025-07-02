@@ -8,8 +8,8 @@ class DebateController:
         self.llm_interface=LLMInterface()
         self.rag=RagPromptBuilder(self.vectorstore,self.llm_interface)
     
-    def add_speech(self,context,speaker):
-        self.vectorstore.add_speech(speaker,context)
+    def add_speech(self,context,speaker,motion):
+        self.vectorstore.add_speech(speaker,context,metadata={"motion": motion})
 
     def generate_ai_speech(self,motion,speaker_role,draft=""):
         return self.rag.generate_speech(motion,speaker_role,draft)

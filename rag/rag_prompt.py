@@ -20,5 +20,8 @@ class RagPromptBuilder:
 
     def generate_speech(self,motion,speaker_role,speech_draft):
         full_prompt=self.build_prompt(motion,speaker_role,speech_draft)
-        return self.llm.generate(full_prompt)
+        generated_speech= self.llm.generate(full_prompt)
+
+        self.retriever.add_speech(speaker_role,generated_speech,metadata={"motion":motion})
+        return generated_speech
     

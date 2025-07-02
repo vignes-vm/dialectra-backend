@@ -9,8 +9,10 @@ from rag.debate_controller import DebateController
 
 #cred = credentials.Certificate("firebase/firebase-admin.json")
 #firebase_admin.initialize_app(cred)
-
-
+from rag.judge_controller import JudgeController
+from rag.vector_store import VectorStroreClient
+from rag.judge_prompt import JudgePromptBuilder
+vector_store=VectorStroreClient()
 debate=DebateController()
 
 app = FastAPI(
@@ -33,18 +35,18 @@ app.add_middleware(
 # Initialize with default LLM type (OpenAI)
 llm = LLMInterface()
 prompts = PromptManager()
-
+judge=JudgeController(vector_store ,llm)
 @app.get("/")
 def hello():
     return {"msg":llm.generate("I am the best person in the world")}
 
 
 @app.post("/submit_speech/")
-def submit_speech(speaker:str,context:str):
-    debate.add_speech(context,speaker)
+def submit_speech(speaker:str,context:str,motion:str):
+    debate.add_speech(context,speaker,motion)
     return {"message":"Speech stored succesfully"}
 
-@app.post("/generate_ai_respons")
+@app.post("/generate_ai_response")
 def generate_ai_response(motion:str,speaker_role:str,draft:str=""):
     speech=debate.generate_ai_speech(motion,speaker_role,draft)
     return {"speech":speech}
@@ -52,6 +54,12 @@ def generate_ai_response(motion:str,speaker_role:str,draft:str=""):
 @app.post("/all_speeches/")
 def all_speeches():
     docs=debate.get_all_speeches()
-    return [{"speaker":d.metadata["speaker"],"context":d.page_context} for d in docs]
+    return [{"speaker":d.metadata["speaker"],"context":d.page_content} for d in docs]
+@app.post("/evaluate_debate/")
+def evaluate_debate(motion:str):
+    result=judge.evaluate_debate(motion)
+    return {"judgement":result}
 
-uvicorn.run(app, host="0.0.0.0", port=8000)
+uvicorn.run(app, host="127.0.0.1", port=8000,reload=True)
+
+
