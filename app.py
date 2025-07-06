@@ -55,6 +55,10 @@ prompts = PromptManager()
 def hello():
     return {"msg":llm.generate("I am the best person in the world")}
 
+@app.get("/create_session/")
+def create_session(session_data):
+    msg=create_debate_session(session_data)
+    return {"msg":msg}
 
 @app.post("/submit_speech/")
 def submit_speech(speaker:str,context:str):
