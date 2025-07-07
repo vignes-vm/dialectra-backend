@@ -62,6 +62,38 @@ Once the server is running, you can access the API documentation at:
 - `POST /debate/{session_id}/judgment` - Generate the AI Judge verdict
 - `POST /debate/{session_id}/save` - Save the debate to a file
 
+## WebSocket Support
+
+The application now supports WebSocket connections for real-time communication during debate sessions. Each debate session has its own WebSocket endpoint, allowing participants to connect to a specific debate.
+
+### WebSocket Endpoints
+
+- `WebSocket /debate/{session_id}/ws` - Connect to a specific debate session
+
+### Features
+
+- Real-time communication between debate participants
+- Support for submitting speeches and receiving AI-generated responses
+- Session-specific connections for multiple simultaneous debates
+
+For detailed documentation on how to use the WebSocket functionality, see the [WebSocket README](websocket/README.md).
+
+### Testing WebSockets
+
+A test script is provided to verify the WebSocket functionality:
+
+```bash
+python test_websocket.py
+```
+
+This script tests:
+- Creating a debate session
+- Connecting to the WebSocket
+- Sending and receiving messages
+- Handling AI-generated responses
+
+For more information on the WebSocket test script, see the [WebSocket Test README](websocket_test_readme.md).
+
 ## Example API Usage
 
 ### Create a new debate
