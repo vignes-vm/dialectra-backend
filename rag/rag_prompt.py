@@ -14,10 +14,12 @@ class RagPromptBuilder:
             f"You are speaking as {speaker_role} in a formal debate on the motion: '{motion}'.\n\n"
             f"Here are previous speeches:\n{context_text}\n\n"
             f"Now deliver your speech. Keep it concise, no longer than 150 words.\n"
-            f"Ensure your speech is highly relevant to the previous arguments and reflects your speaker role.\n\n"
-            f"Start your speech:\n{current_speech_draft.strip()}"
+            f"Ensure your speech is highly relevant to the previous arguments and reflects your speaker role.\n"
+            f"Do not include any content from earlier drafts — just give your fresh argument.\n\n"
+            f"Start your speech now:"
         )
         return prompt
+
 
 
     def generate_speech(self,motion,speaker_role,speech_draft):
